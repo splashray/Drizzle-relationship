@@ -2,7 +2,7 @@ const { pgTable, serial, boolean, integer, timestamp } = require("drizzle-orm/pg
 
 const { relations } = require("drizzle-orm");
 
-const ownersProfileCheckLists = pgTable("owners", {
+const ownersProfileCheckLists = pgTable("ownersProfileCheckLists", {
   id: serial("id").primaryKey(),
   ownerId: integer("owner_id")
     .notNull()
