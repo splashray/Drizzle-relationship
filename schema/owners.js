@@ -28,7 +28,7 @@ const owners = pgTable("owners", {
 
   createdAt: timestamp("createdAt").defaultNow(),
   updatedAt: timestamp("updatedAt").defaultNow(),
-  deletedAt: timestamp("deletedAt"),
+  deletedAt: timestamp("deletedAt")
 
 });
 
@@ -38,8 +38,12 @@ const ownersRelations = relations(owners, ({ many, one }) => {
 
   return {
     hotels: many(hotels),
-    ownersProfileCheckLists: one(ownersProfileCheckLists)
+    ownersProfileCheckLists: one(ownersProfileCheckLists, {
+      fields: [owners.id],
+      references: [ownersProfileCheckLists.ownerId],
+    }),
   };
+  
 });
 
 // Ensure you export all models and relations
@@ -47,3 +51,4 @@ module.exports = {
   owners,
   ownersRelations,
 };
+
